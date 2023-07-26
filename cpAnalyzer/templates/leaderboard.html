@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div class="board_div" id="leaderboard_div">
+        <div id="leaderboard">Leaderboard</div>
+        <p class="board_line">On the basis of recent submissions on different Competitive Platforms. </p>
+    </div>
+
+    <div class="board_div">
+    {{peoples}}
+    <table>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Can Vote</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{people.name}}</td>
+          <td>{{people.age}}</td>
+          <td {% if people.age < 18 %} style="background-color: red" {% endif %}>
+            {% if people.age >= 18 %}
+            "yes"
+            {% else %}
+            "no"
+            {% endif %}
+          </td>
+        </tr>
+        {%  endfor %}
+      </table>
+      {{text|truncatechars:70}}
+      <p>
+        {% if "bluje" in color %}
+            "Yes Blue is there."
+        {% elif "green" in color %}
+            "Yes green is there"
+        {% else %}
+            "No its not there."
+        {% endif %}
+      </p>
+      <!--  Check more in django-templates-tag  -->
+    </div>
+
+    
+{% endblock body %}
